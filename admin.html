@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 奇云爱看</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="sidebar">
+            <div class="logo">
+                <span class="logo-text">奇云爱看管理后台</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z"/>
+                    </svg>
+                    仪表盘
+                </a>
+                <a href="#" class="nav-item" data-page="users">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    用户管理
+                </a>
+                <a href="#" class="nav-item" data-page="videos">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"/>
+                    </svg>
+                    视频管理
+                </a>
+                <a href="#" class="nav-item" data-page="comments">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18"/>
+                    </svg>
+                    评论管理
+                </a>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="page-header">
+                <h1>仪表盘</h1>
+                <div class="user-info">
+                    <span class="admin-name">管理员</span>
+                    <button class="logout-btn">退出</button>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <!-- 内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html> 

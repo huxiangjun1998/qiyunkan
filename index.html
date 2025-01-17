@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>承奇志，登云阁 - 就是爱看小姐姐</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 视频容器 -->
+    <div class="video-container">
+        <div class="video-card">
+            <video class="video-player" playsinline preload="auto">
+                <!-- 视频源将通过JS动态插入 -->
+            </video>
+        </div>
+    </div>
+
+    <a href="index.html" class="logo-link">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24">
+                <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M10,16.5L16,12L10,7.5V16.5Z"/>
+            </svg>
+            <span class="logo-text">奇云爱看</span>
+        </div>
+    </a>
+
+    <!-- 控制栏 -->
+    <div class="controls-container">
+        <button class="control-button" id="muteButton" data-tooltip="点击切换声音">
+            <svg class="button-icon mute-icon" viewBox="0 0 24 24">
+                <path d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z"/>
+            </svg>
+            <span class="button-text">声音</span>
+        </button>
+        <button class="control-button" id="nextButton" data-tooltip="观看下一个视频">
+            <svg class="button-icon next-icon" viewBox="0 0 24 24">
+                <path d="M16,18H18V6H16M6,18L14.5,12L6,6V18Z"/>
+            </svg>
+            <span class="button-text">下一个</span>
+        </button>
+        <button class="control-button" id="refreshButton" data-tooltip="加载不出来点我">
+            <svg class="button-icon refresh-icon" viewBox="0 0 24 24">
+                <path d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"/>
+            </svg>
+            <span class="button-text">刷新</span>
+        </button>
+    </div>
+
+    <!-- 用户头像区域 -->
+    <div class="user-profile">
+        <div class="logged-in-view" style="display: none;">
+            <img id="userAvatar" src="" alt="用户头像" class="avatar">
+            <span>个人中心</span>
+        </div>
+        <div class="logged-out-view" style="display: none;">
+            <button class="login-btn">登录</button>
+            <button class="register-btn">注册</button>
+        </div>
+    </div>
+
+    <!-- 移动端底部导航栏 -->
+    <div class="mobile-nav">
+        <a href="#" class="nav-item" id="mobileMuteButton">
+            <svg viewBox="0 0 24 24" class="nav-icon mute-icon">
+                <path d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z"/>
+            </svg>
+            <span>声音</span>
+        </a>
+        <a href="#" class="nav-item" id="mobileNextButton">
+            <svg viewBox="0 0 24 24" class="nav-icon next-icon">
+                <path d="M16,18H18V6H16M6,18L14.5,12L6,6V18Z"/>
+            </svg>
+            <span>下一个</span>
+        </a>
+        <a href="#" class="nav-item" id="mobileRefreshButton">
+            <svg viewBox="0 0 24 24" class="nav-icon refresh-icon">
+                <path d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"/>
+            </svg>
+            <span>刷新</span>
+        </a>
+    </div>
+
+    <!-- AI对话框 -->
+    <div class="ai-chat-toggle">
+        <svg viewBox="0 0 24 24">
+            <path d="M12,3C17.5,3 22,6.58 22,11C22,15.42 17.5,19 12,19C10.76,19 9.57,18.82 8.47,18.5C5.55,21 2,21 2,21C4.33,18.67 4.7,17.1 4.75,16.5C3.05,15.07 2,13.13 2,11C2,6.58 6.5,3 12,3M17,12V10H15V12H17M13,12V10H11V12H13M9,12V10H7V12H9Z"/>
+        </svg>
+    </div>
+
+    <div class="ai-chat-container">
+        <div class="ai-chat-header">
+            <div class="ai-chat-title">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z"/>
+                </svg>
+                AI小女仆灵灵
+            </div>
+        </div>
+        <div class="ai-chat-messages">
+            <div class="message ai">你好！我是AI小助手，有什么我可以帮你的吗？</div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" placeholder="输入消息..." id="aiChatInput">
+            <button id="aiChatSend">发送</button>
+        </div>
+    </div>
+
+    <style>
+        .user-profile {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .logged-in-view {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logged-in-view:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .logged-in-view .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logged-in-view span {
+            color: white;
+            font-size: 14px;
+        }
+
+        .logged-out-view {
+            display: flex;
+            gap: 8px;
+        }
+
+        .logged-out-view button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
+            min-width: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logged-out-view button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .register-btn {
+            margin-left: 8px;
+        }
+
+        .logo-link {
+            text-decoration: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .controls-container,
+            .social-container,
+            .user-profile {
+                display: none !important;
+            }
+
+            .mobile-nav {
+                display: flex !important;
+            }
+
+            .video-container {
+                margin-bottom: 50px;
+            }
+
+            .logo-link {
+                top: 12px;
+                left: 12px;
+                opacity: 0.6;
+                transition: opacity 0.3s ease;
+            }
+
+            .logo-link:hover {
+                opacity: 1;
+            }
+
+            .logo-link .logo-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .logo-link .logo-text {
+                font-size: 14px;
+            }
+
+            .logo {
+                background: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(5px);
+                padding: 4px 8px;
+                border-radius: 16px;
+            }
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            padding: 6px;
+            flex: 1;
+        }
+
+        .nav-item.active {
+            color: #4ecdc4;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            margin-bottom: 2px;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        #uploadButton {
+            color: #ff6b6b;
+        }
+
+        #uploadButton:active {
+            transform: scale(0.95);
+        }
+    </style>
+
+    <script src="app.js"></script>
+</body>
+</html> 
